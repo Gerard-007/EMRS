@@ -1,5 +1,11 @@
 import random
 
+def generate_id(appointment, value):
+    appointment.appointment_id = value
+    if appointment.appointment_id in [a.appointment_id for a in appointment.doctor.appointments]:
+        appointment.appointment_id = random.randint(000000, 999999)
+        generate_id(appointment, appointment.appointment_id)
+    return appointment.appointment_id
 
 class Appointment:
     def __init__(self, date, time, doctor, patient):
@@ -7,13 +13,14 @@ class Appointment:
         self.time = time
         self.doctor = doctor
         self.patient = patient
-        self.appointment_id = random.randint(100000, 999999)
+        self.appointment_id = None
 
     def book_an_appointment(self, date, time, doctor, patient):
         self.date = date
         self.time = time
         self.doctor = doctor
         self.patient = patient
+        self.appointment_id = generate_id(self, random.randint(000000, 999999))
         doctor.appointments.append(self)
         patient.appointments.append(self)
         print(f'Appointment {self.appointment_id} booked for {patient} with Doctor {doctor} on {date} at {time}')
