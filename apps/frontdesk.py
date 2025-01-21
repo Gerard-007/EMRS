@@ -1,4 +1,3 @@
-from datetime import datetime
 from appointment import Appointment
 from user import User
 
