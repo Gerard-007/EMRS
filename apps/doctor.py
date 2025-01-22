@@ -44,4 +44,3 @@ class Doctor(User):
 
     def get_appointments(self):
         return self.__appointments
-

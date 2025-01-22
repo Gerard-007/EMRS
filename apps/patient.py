@@ -23,8 +23,3 @@ class Patient(User):
 
     def get_appointments(self):
         return self.__appointments
-
-
-
-
-

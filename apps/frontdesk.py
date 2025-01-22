@@ -1,5 +1,5 @@
-from appointment import Appointment
-from user import User
+from apps.appointment import Appointment
+from apps.user import User
 
 class FrontDesk(User):
     def __init__(self, first_name, last_name, dob, address, phone, email):

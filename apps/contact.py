@@ -6,5 +6,3 @@ class ContactInfo:
 
     def __str__(self):
         return f"Address: {self.address}, Phone: {self.phone}, Email: {self.email}"
-
-
