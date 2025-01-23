@@ -1,7 +1,6 @@
 from apps.contact import ContactInfo
 from apps.frontdesk import FrontDesk
 from apps.user import User
-from database.db_config import Database
 
 def display_mainmenu():
     return input("""
@@ -40,9 +39,6 @@ def display_doctor_menu():
     5- Exit""")
 
 def main():
-    # Initialize database
-    db = Database()
-    
     while True:
         option = display_mainmenu()
         match option:
