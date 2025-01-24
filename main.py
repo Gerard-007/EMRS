@@ -117,11 +117,12 @@ def generate_medical_report():
 
 def check_medical_history():
     print("Checking medical history...")
-    patient = get_patient()
-    if patient.get_med_history():
+    try:
+        patient = get_patient()
+        patient.get_med_history()
         print("Medical History:")
         patient.view_med_history()
-    else:
+    except AttributeError:
         print("No medical history available.")
 
 def check_assigned_doctor():
