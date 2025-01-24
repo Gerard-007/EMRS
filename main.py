@@ -1,9 +1,6 @@
 import datetime
-from apps import doctor
-from apps.contact import ContactInfo
 from apps.frontdesk import FrontDesk
 from apps.medical_records import MedicalRecord
-from apps.user import User
 from apps.appointment import Appointment
 from apps.doctor import Doctor
 from apps.patient import Patient
@@ -50,37 +47,38 @@ def display_doctor_menu():
     0- Exit
     >> """)
 
+
 def register_patient():
-    first_name = input("Enter first name: ")
-    last_name = input("Enter last name: ")
-    dob = input("Enter date of birth: ")
-    address = input("Enter address: ")
-    phone_number = input("Enter phone number: ")
-    email = input("Enter email: ")
+    first_name = input("Enter first name: ").split()
+    last_name = input("Enter last name: ").split()
+    dob = input("Enter date of birth: ").split()
+    address = input("Enter address: ").split()
+    phone_number = input("Enter phone number: ").split()
+    email = input("Enter email: ").split()
     patient = Patient(
         first_name=first_name,
         last_name=last_name,
         dob=dob,
         address=address,
-        phone_number=phone_number,
+        phone=phone_number,
         email=email
     )
     patients.append(patient)
 
 def register_doctor():
-    first_name = input("Enter first name: ")
-    last_name = input("Enter last name: ")
-    dob = input("Enter date of birth: ")
-    address = input("Enter address: ")
-    phone_number = input("Enter phone number: ")
-    email = input("Enter email: ")
-    specialization = input("Enter specialization: ")
+    first_name = input("Enter first name: ").split()
+    last_name = input("Enter last name: ").split()
+    dob = input("Enter date of birth: ").split()
+    address = input("Enter address: ").split()
+    phone_number = input("Enter phone number: ").split()
+    email = input("Enter email: ").split()
+    specialization = input("Enter specialization: ").split()
     doctor = Doctor(
         first_name=first_name,
         last_name=last_name,
         dob=dob,
         address=address,
-        phone_number=phone_number,
+        phone=phone_number,
         email=email,
         specialization=specialization
     )
@@ -89,15 +87,14 @@ def register_doctor():
 
 def book_appointment():
     print("Booking an appointment...")
-    date = input("Enter the appointment date (YYYY-MM-DD): ")
-    time = input("Enter the appointment time (HH:MM): ")
+    date = input("Enter the appointment date (YYYY-MM-DD): ").split()
+    time = input("Enter the appointment time (HH:MM): ").split()
     patient = get_patient()
     doctor = get_doctor()
     appointment = Appointment(date, time, doctor, patient)
     doctor.get_appointments().append(appointment)
     patient.get_appointments().append(appointment)
     print(f"Appointment booked successfully: {appointment}")
-
 
 def search_patient():
     print("Searching for a patient...")
@@ -109,7 +106,6 @@ def search_patient():
             print(f"{patient.first_name} {patient.last_name}")
     else:
         print("No patients found with that name.")
-
 
 def generate_medical_report():
     print("Generating a medical report...")
@@ -126,7 +122,6 @@ def check_medical_history():
         patient.view_med_history()
     else:
         print("No medical history available.")
-
 
 def check_assigned_doctor():
     patient = get_patient()
@@ -231,7 +226,7 @@ def main():
                         case "4":
                             print("Updating a medical report...")
                             update_medical_report()
-                        case "5":
+                        case "0":
                             print("Exiting Doctor menu...")
                             break
                         case _:

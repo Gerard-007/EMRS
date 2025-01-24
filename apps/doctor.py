@@ -2,11 +2,14 @@ from apps.user import User
 
 
 class Doctor(User):
-    def __init__(self, first_name, last_name, dob, address, phone_number, email, specialization):
-        super().__init__(first_name, last_name, dob, address, phone_number, email)
+    def __init__(self, first_name, last_name, dob, address, phone, email, specialization):
+        super().__init__(first_name, last_name, dob, address, phone, email)
         self.__specialization = specialization
         self.__assigned_patients = []
         self.__appointments = []
+
+    def __str__(self):
+        return f"{super().__str__()}, Specialization: {self.__specialization}"
 
     def update_medical_record(self, patient, new_diagnosis, test, drug):
         medical_history = patient.get_med_history()
