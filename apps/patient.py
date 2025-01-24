@@ -26,7 +26,7 @@ class Patient(User):
         return self.__assigned_doctor
 
     def get_med_history(self):
-        return self.__med_history
+        return self.__med_history or "Medical History not found"
 
     def get_appointments(self):
         return self.__appointments
