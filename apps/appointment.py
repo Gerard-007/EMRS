@@ -1,5 +1,6 @@
 import datetime
 
+
 class Appointment:
     def __init__(self, date, time, doctor, patient):
         self.date = date

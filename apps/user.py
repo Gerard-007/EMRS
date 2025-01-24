@@ -9,5 +9,5 @@ class User:
         self.contact_info = ContactInfo(address, phone, email)
 
     def __str__(self):
-        contact_details = str(super().__str__()) if super().__str__() else "No contact info"
+        contact_details = str(self.contact_info)
         return f"{self.first_name} {self.last_name}, DOB: {self.dob}, Contact: {contact_details}"
