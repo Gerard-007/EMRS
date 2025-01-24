@@ -104,7 +104,7 @@ def search_patient():
     results = [p for p in patients if search_query.lower() in p.first_name[0].lower() or search_query.lower() in p.last_name[0].lower()]
     if results:
         for patient in results:
-            print(f"Found patient: {patient.first_name[0]} {patient.last_name[0]}")  # Print patient details
+            print(f"Found patient: {patient.first_name[0]} {patient.last_name[0]}")
     else:
         print("No patients found.")
 
