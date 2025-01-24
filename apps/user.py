@@ -7,6 +7,7 @@ class User:
         self.last_name = last_name
         self.dob = dob
         self.contact_info = ContactInfo(address, phone, email)
+        
 
     def __str__(self):
         contact_details = str(self.contact_info)

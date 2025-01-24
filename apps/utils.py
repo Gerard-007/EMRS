@@ -27,7 +27,7 @@ def find_doctor_by_name(name):
     return None
 
 def get_patient():
-    patient_name = input("Enter the patient's name: ")
+    patient_name = str(input("Enter the patient's name: ").strip())
     patient = find_patient_by_name(patient_name)
 
     if not patient:
@@ -36,7 +36,7 @@ def get_patient():
     return patient
 
 def get_doctor():
-    doctor_name = input("Enter the doctor's name: ")
+    doctor_name = str(input("Enter the doctor's name: ").strip())
     doctor = find_doctor_by_name(doctor_name)
 
     if not doctor:
