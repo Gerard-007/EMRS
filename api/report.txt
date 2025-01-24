@@ -1,0 +1,42 @@
+ERROR'S WHILE TESTING
+
+>>>>>>>>>>>>>>ERROR NUMBER 1 <<<<<<<<<<<<<
+
+The error below appears when frontdesk tries an appointment and enters patient name
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\Documents\EMR\EMRS\main.py", line 245, in <module>
+    main()
+  File "C:\Users\DELL\Documents\EMR\EMRS\main.py", line 190, in main
+    book_appointment()
+  File "C:\Users\DELL\Documents\EMR\EMRS\main.py", line 94, in book_appointment
+    patient = get_patient()
+              ^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\EMR\EMRS\apps\utils.py", line 31, in get_patient
+    patient = find_patient_by_name(patient_name)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\EMR\EMRS\apps\utils.py", line 18, in find_patient_by_name
+    if name.lower() in (patient.first_name + " " + patient.last_name).lower():
+                        ~~~~~~~~~~~~~~~~~~~^~~~~
+TypeError: can only concatenate list (not "str") to list
+
+
+>>>>>>>>>ERROR NUMBER 2<<<<<<<<<
+
+The following error occurs while the patient tries to get their medical history
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\Documents\EMR\EMRS\main.py", line 245, in <module>
+    main()
+  File "C:\Users\DELL\Documents\EMR\EMRS\main.py", line 206, in main
+    check_medical_history()
+  File "C:\Users\DELL\Documents\EMR\EMRS\main.py", line 121, in check_medical_history
+    patient = get_patient()
+              ^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\EMR\EMRS\apps\utils.py", line 31, in get_patient
+    patient = find_patient_by_name(patient_name)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\EMR\EMRS\apps\utils.py", line 18, in find_patient_by_name
+    if name.lower() in (patient.first_name + " " + patient.last_name).lower():
+                        ~~~~~~~~~~~~~~~~~~~^~~~~
+TypeError: can only concatenate list (not "str") to list

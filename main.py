@@ -53,7 +53,7 @@ def display_doctor_menu():
 def register_patient():
     first_name = input("Enter first name: ").split()
     last_name = input("Enter last name: ").split()
-    dob = input("Enter date of birth: ").split()
+    dob = input("Enter date of birth(YYYY-MM-DD): ").split()
     address = input("Enter address: ").split()
     phone_number = input("Enter phone number: ").split()
     email = input("Enter email: ").split()
@@ -70,7 +70,7 @@ def register_patient():
 def register_doctor():
     first_name = input("Enter first name: ").split()
     last_name = input("Enter last name: ").split()
-    dob = input("Enter date of birth: ").split()
+    dob = input("Enter date of birth(YYYY-MM-DD): ").split()
     address = input("Enter address: ").split()
     phone_number = input("Enter phone number: ").split()
     email = input("Enter email: ").split()
@@ -155,14 +155,14 @@ def update_doctor_appointment():
     if doctor.update_appointment(patient, date, time):
         print("Appointment updated successfully.")
     else:
-        print("Failed to update appointment.")
+        print("Failed to update appointment try again.")
 
 def search_for_patient_or_appointment():
     search_value = input("Enter the name or appointment detail to search: ")
     get_doctor().search(search_value)
 
 def update_medical_report():
-    print("Updating a medical report...")
+    print("Updating medical report...")
     doctor = get_doctor()
     patient = get_patient()
 
