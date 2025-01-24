@@ -8,7 +8,7 @@ class MedicalRecord:
         self.diagnosis = diagnosis
         self.medications = medications
         self.notes = notes
-        self.date = date or datetime.date.today()
+        self.date = date or f"{datetime.date.today()}"
 
     def update_medical_record(self, diagnosis, medications, notes):
         if diagnosis:

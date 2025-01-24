@@ -1,4 +1,3 @@
-import datetime
 from apps.frontdesk import FrontDesk
 from apps.medical_records import MedicalRecord
 from apps.appointment import Appointment
@@ -50,12 +49,12 @@ def display_doctor_menu():
 
 
 def register_patient():
-    first_name = input("Enter first name: ").split()
-    last_name = input("Enter last name: ").split()
-    dob = input("Enter date of birth: ").split()
-    address = input("Enter address: ").split()
-    phone_number = input("Enter phone number: ").split()
-    email = input("Enter email: ").split()
+    first_name = get_valid_name_input("Enter first name: ")
+    last_name = get_valid_name_input("Enter last name: ")
+    dob = get_valid_date_input("Enter date of birth (YYYY-MM-DD): ")
+    address = get_valid_address_input("Enter address: ")
+    phone_number = get_valid_phone_input("Enter phone number: ")
+    email = get_valid_email_input("Enter email: ")
     patient = Patient(
         first_name=first_name,
         last_name=last_name,
@@ -67,13 +66,13 @@ def register_patient():
     patients.append(patient)
 
 def register_doctor():
-    first_name = input("Enter first name: ").split()
-    last_name = input("Enter last name: ").split()
-    dob = input("Enter date of birth: ").split()
-    address = input("Enter address: ").split()
-    phone_number = input("Enter phone number: ").split()
-    email = input("Enter email: ").split()
-    specialization = input("Enter specialization: ").split()
+    first_name = get_valid_name_input("Enter first name: ")
+    last_name = get_valid_name_input("Enter last name: ")
+    dob = get_valid_date_input("Enter date of birth (YYYY-MM-DD): ")
+    address = get_valid_address_input("Enter address: ")
+    phone_number = get_valid_phone_input("Enter phone number: ")
+    email = get_valid_email_input("Enter email: ")
+    specialization = get_valid_name_input("Enter specialization: ")
     doctor = Doctor(
         first_name=first_name,
         last_name=last_name,
@@ -88,8 +87,8 @@ def register_doctor():
 
 def book_appointment():
     print("Booking an appointment...")
-    date = input("Enter the appointment date (YYYY-MM-DD): ").split()
-    time = input("Enter the appointment time (HH:MM): ").split()
+    date = get_valid_date_input("Enter the appointment date (YYYY-MM-DD): ")
+    time = get_valid_time_input("Enter the appointment time (HH:MM): ")
     patient = get_patient()
     doctor = get_doctor()
     appointment = Appointment(date, time, doctor, patient)
@@ -151,7 +150,6 @@ def update_doctor_appointment():
     time = input("Enter the new appointment time (HH:MM): ")
     doctor = get_doctor()
     patient = get_patient()
-
     if doctor.update_appointment(patient, date, time):
         print("Appointment updated successfully.")
     else:
@@ -165,12 +163,11 @@ def update_medical_report():
     print("Updating a medical report...")
     doctor = get_doctor()
     patient = get_patient()
-
     diagnosis = input("Enter the new diagnosis: ")
     medications = input("Enter the medications (comma-separated): ").split(",")
     notes = input("Enter additional notes: ")
-
-    record = MedicalRecord(patient, doctor, diagnosis, medications, notes, datetime.date.today())
+    date = get_valid_date_input("Enter the medication date (YYYY-MM-DD): ")
+    record = MedicalRecord(patient, doctor, diagnosis, medications, notes, date)
     print("Medical report updated successfully:")
     print(record)
 
@@ -198,7 +195,6 @@ def main():
                             break
                         case _:
                             print("Invalid choice. Please try again.")
-
             case "2":
                 while True:
                     patient_option = display_patient_menu()
@@ -212,7 +208,6 @@ def main():
                             break
                         case _:
                             print("Invalid choice. Please try again.")
-
             case "3":
                 while True:
                     doctor_option = display_doctor_menu()
