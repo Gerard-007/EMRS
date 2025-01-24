@@ -24,9 +24,10 @@ def display_frontdesk_menu():
     display_welcome()
     return input("""
     1- Register patient
-    2- Book Appointment
-    3- Search
-    4- Generate medical-report
+    2- Register doctor
+    3- Book Appointment
+    4- Search
+    5- Generate medical-report
     0 Exit
     >> """)
 
@@ -94,25 +95,26 @@ def book_appointment():
     patient = get_patient()
     doctor = get_doctor()
     appointment = Appointment(date, time, doctor, patient)
-    doctor.get_appointments().append(appointment)
-    patient.get_appointments().append(appointment)
-    print(f"Appointment booked successfully: {appointment}")
+    try:
+        doctor.get_appointments().append(appointment)
+        patient.get_appointments().append(appointment)
+        print(f"Appointment booked successfully: {appointment}")
+    except AttributeError as e:
+        print("Doctor or patient not found")
 
 def search_patient():
-    print("Searching for a patient...")
-    search_query = input("Enter the patient's name to search: ").strip()
-    results = [p for p in patients if search_query.lower() in p.first_name.lower() or search_query.lower() in p.last_name.lower()]
+    search_query = input("Enter the patient's name to search: ")
+    results = [p for p in patients if search_query.lower() in p.first_name[0].lower() or search_query.lower() in p.last_name[0].lower()]
     if results:
-        print("Search Results:")
         for patient in results:
-            print(f"{patient.first_name} {patient.last_name}")
+            print(f"Found patient: {patient.first_name[0]} {patient.last_name[0]}")  # Print patient details
     else:
-        print("No patients found with that name.")
+        print("No patients found.")
 
 def generate_medical_report():
     print("Generating a medical report...")
     patient = get_patient()
-    print(f"Medical Report for {patient.first_name} {patient.last_name}:")
+    print(f"Medical Report for {patient.first_name[0]} {patient.last_name[0]}:")
     patient.view_med_history()
 
 
@@ -175,7 +177,6 @@ def update_medical_report():
     print(record)
 
 
-
 def main():
     while True:
         option = display_mainmenu()
@@ -187,10 +188,12 @@ def main():
                         case "1":
                             register_patient()
                         case "2":
-                            book_appointment()
+                            register_doctor()
                         case "3":
-                            search_patient()
+                            book_appointment()
                         case "4":
+                            search_patient()
+                        case "5":
                             generate_medical_report()
                         case "0":
                             print("Exiting FrontDesk menu...")
