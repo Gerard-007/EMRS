@@ -3,19 +3,21 @@ from apps.contact import ContactInfo
 from apps.frontdesk import FrontDesk
 from apps.user import User
 
+def display_welcome():
+    print("---WELCOME TO GOD-CARE'S HOSPITAL")
+    print("Select an option")
+
 def display_mainmenu():
+    display_welcome()
     return input("""
-    ---WELCOME TO GOD-CARE'S HOSPITAL
-    Select an option
     1- FrontDesk
     2- Patient
     3- Doctor
     4- Exit""")
 
 def display_frontdesk_menu():
+    display_welcome()
     return input("""
-    ---WELCOME TO GOD-CARE'S HOSPITAL")
-    Select an option
     1- Register patient
     2- Book Appointment
     3- Search
@@ -23,16 +25,16 @@ def display_frontdesk_menu():
     5- Exit""")
 
 def display_patient_menu():
-    return input("""---WELCOME TO GOD-CARE'S HOSPITAL
-    Select an option
+    display_welcome()
+    return input("""
     1- Check medical history
     2- Check Assigned Doctor
     4- Exit""")
 
 def display_doctor_menu():
+    display_welcome()
     return input(
-    """---WELCOME TO GOD-CARE'S HOSPITAL
-    Select an option
+    """
     1- Check Assigned Patient
     2- Update Appointment
     3- Search
