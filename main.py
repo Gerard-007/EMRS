@@ -7,10 +7,13 @@ from apps.patient import Patient
 from apps.utils import *
 
 
+def display_welcome():
+    print("---WELCOME TO GOD-CARE'S HOSPITAL")
+    print("Select an option")
+
 def display_mainmenu():
+    display_welcome()
     return input("""
-    ---WELCOME TO GOD-CARE'S HOSPITAL
-    Select an option
     1- FrontDesk
     2- Patient
     3- Doctor
@@ -18,9 +21,8 @@ def display_mainmenu():
     >> """)
 
 def display_frontdesk_menu():
+    display_welcome()
     return input("""
-    ---WELCOME TO GOD-CARE'S HOSPITAL")
-    Select an option
     1- Register patient
     2- Register doctor
     3- Book Appointment
@@ -30,17 +32,17 @@ def display_frontdesk_menu():
     >> """)
 
 def display_patient_menu():
-    return input("""---WELCOME TO GOD-CARE'S HOSPITAL
-    Select an option
+    display_welcome()
+    return input("""
     1- Check medical history
     2- Check Assigned Doctor
     0- Exit
     >> """)
 
 def display_doctor_menu():
+    display_welcome()
     return input(
-    """---WELCOME TO GOD-CARE'S HOSPITAL
-    Select an option
+    """
     1- Check Assigned Patient
     2- Update Appointment
     3- Search
@@ -52,7 +54,7 @@ def display_doctor_menu():
 def register_patient():
     first_name = input("Enter first name: ").split()
     last_name = input("Enter last name: ").split()
-    dob = input("Enter date of birth: ").split()
+    dob = input("Enter date of birth(YYYY-MM-DD): ").split()
     address = input("Enter address: ").split()
     phone_number = input("Enter phone number: ").split()
     email = input("Enter email: ").split()
@@ -69,7 +71,7 @@ def register_patient():
 def register_doctor():
     first_name = input("Enter first name: ").split()
     last_name = input("Enter last name: ").split()
-    dob = input("Enter date of birth: ").split()
+    dob = input("Enter date of birth(YYYY-MM-DD): ").split()
     address = input("Enter address: ").split()
     phone_number = input("Enter phone number: ").split()
     email = input("Enter email: ").split()
@@ -118,11 +120,12 @@ def generate_medical_report():
 
 def check_medical_history():
     print("Checking medical history...")
-    patient = get_patient()
-    if patient.get_med_history():
+    try:
+        patient = get_patient()
+        patient.get_med_history()
         print("Medical History:")
         patient.view_med_history()
-    else:
+    except AttributeError:
         print("No medical history available.")
 
 def check_assigned_doctor():
@@ -155,14 +158,14 @@ def update_doctor_appointment():
     if doctor.update_appointment(patient, date, time):
         print("Appointment updated successfully.")
     else:
-        print("Failed to update appointment.")
+        print("Failed to update appointment try again.")
 
 def search_for_patient_or_appointment():
     search_value = input("Enter the name or appointment detail to search: ")
     get_doctor().search(search_value)
 
 def update_medical_report():
-    print("Updating a medical report...")
+    print("Updating medical report...")
     doctor = get_doctor()
     patient = get_patient()
 
